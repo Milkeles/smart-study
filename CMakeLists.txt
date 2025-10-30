@@ -31,8 +31,12 @@ else()
 endif()
 
 # Main executable
+file(GLOB_RECURSE SOURCES 
+    "src/*.cpp"
+)
+
 add_executable(smart-study
-    src/main.cpp
+    ${SOURCES}
 )
 
 target_include_directories(smart-study PRIVATE
