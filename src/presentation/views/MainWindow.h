@@ -5,7 +5,7 @@
  * managing navigation between different views (FlashCards, Pomodoro, etc.)
  * 
  * @version 1.0.0
- * @author Hristo Hristov
+ * @author Hristo T. Hristov (milkeles)
  * @date Created: 30/10/2025
  * @date Updated: 30/10/2025
  */
