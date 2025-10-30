@@ -457,3 +457,13 @@ desktop.ini
 docs/html/
 docs/latex/
 doxygen_output/
+
+
+#############################################
+# Ai models
+#############################################
+*.gguf
+*.bin
+resources/ai-models/     # Променено от models/
+*.safetensors
+*.onnx

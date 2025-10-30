@@ -1,0 +1,11 @@
+{
+  "name": "smart-study",
+  "version": "1.0.0",
+  "description": "Educational productivity application for students",
+  "dependencies": [
+    "sqlitecpp",
+    {
+      "name": "sqlite3"
+    }
+  ]
+}
