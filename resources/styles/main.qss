@@ -1,0 +1,33 @@
+/* @file main.qss
+ * @brief This is the main Qt stylesheet used within the project.
+ * 
+ * @version 1.0.0
+ * @author Hristo T. Hristov (milkeles)
+ * @date Created: 30/10/2025 (dd/mm/yyyy)
+ * @date Updated: 30/10/2025 (dd/mm/yyyy)
+ */
+
+QWidget {
+    background-color: #FAFBFC;
+    color: #212529;
+    font-family: "Inter";
+    font-size: 16px;
+}
+
+QLabel#titleLabel {
+    font-size: 28px;
+    font-weight: 700;
+    color: #212529;
+}
+
+/* TODO: Primary, secondary & other button types. Inherit & override. */
+QPushButton {
+    background-color: #C0B7FF;
+    color: #212529;
+    border: none;
+    border-radius: 14px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    min-height: 40px;
+}

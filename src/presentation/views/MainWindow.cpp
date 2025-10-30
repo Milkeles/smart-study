@@ -1,6 +1,7 @@
 /* @file MainWindow.cpp
  * @brief Implementation of the MainWindow.h class.
  * 
+ * @version 1.0.0
  * @author Hristo T. Hristov (milkeles)
  * @date Created: 30/10/2025 (dd/mm/yyyy)
  * @date Updated: 30/10/2025 (dd/mm/yyyy)
@@ -26,7 +27,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     centralWidget->setStyleSheet("background-color: #FAFBFC;");
     flashcardsButton->setStyleSheet("color: #212529;");
     pomodoroButton->setStyleSheet("color: #212529");
-    
+
     setCentralWidget(centralWidget);
     setWindowTitle("Smart Study");
     resize(800, 600);

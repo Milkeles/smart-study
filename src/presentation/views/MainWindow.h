@@ -4,6 +4,7 @@
  * This class provides the primary UI container for the application,
  * managing navigation between different views (FlashCards, Pomodoro, etc.)
  * 
+ * @version 1.0.0
  * @author Hristo Hristov
  * @date Created: 30/10/2025
  * @date Updated: 30/10/2025
