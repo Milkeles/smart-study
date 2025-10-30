@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     centralWidget = new QWidget(this);
     layout = new QVBoxLayout(centralWidget);
     
-    titleLabel = new QLabel("Smart Study", centralWidget);
+    titleLabel = new QLabel("Hello world!", centralWidget);
     titleLabel->setStyleSheet("font-size: 28px; color: #212529;");
     
     flashcardsButton = new QPushButton("Flash Cards", centralWidget);
@@ -22,6 +22,10 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     layout->addWidget(titleLabel, 0, Qt::AlignCenter);
     layout->addWidget(flashcardsButton);
     layout->addWidget(pomodoroButton);
+
+    centralWidget->setStyleSheet("background-color: #FAFBFC;");
+    flashcardsButton->setStyleSheet("color: #212529;");
+    pomodoroButton->setStyleSheet("color: #212529");
     
     setCentralWidget(centralWidget);
     setWindowTitle("Smart Study");
