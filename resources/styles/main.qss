@@ -1,27 +1,65 @@
-/* @file main.qss
+/**
+ * @file main.qss
  * @brief This is the main Qt stylesheet used within the project.
  * 
- * @version 1.0.0
  * @author Hristo T. Hristov (milkeles)
  * @date Created: 30/10/2025 (dd/mm/yyyy)
  * @date Updated: 30/10/2025 (dd/mm/yyyy)
  */
 
+/* Backgrounds */
 QWidget {
-    background-color: #FAFBFC;
     color: #212529;
     font-family: "Inter";
     font-size: 16px;
     padding: 16px;
 }
 
-QLabel#titleLabel {
-    font-size: 28px;
-    font-weight: 700;
+QWidget#background1 {
+    background-color: #FAFBFC;
+}
+
+QWidget#background2 {
+    background-color: #F1F3F5;
+}
+
+/* Text */
+QLabel {
+    font-size: 16px;
+    font-weight: 400;
     color: #212529;
 }
 
-/* TODO: Primary, secondary & other button types. Inherit & override. */
+QLabel#small {
+    font-size: 14px;
+}
+
+QLabel#secondary-text {
+    color: #434A4F;
+}
+
+QLabel#small-secondary-text {
+    color: #434A4F;
+    font-size: 14px;
+}
+
+/* Headings */
+QLabel#h1 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+QLabel#h2 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+QLabel#h3 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* Buttons */
 QPushButton {
     color: #212529;
     border: none;
@@ -30,6 +68,12 @@ QPushButton {
     font-size: 16px;
     font-weight: 500;
     min-height: 40px;
+    min-width: 40px;
+}
+
+QPushButton:pressed {
+    margin-top: -2px;
+    margin-bottom: 2px;
 }
 
 QPushButton#PrimaryButton {
@@ -38,8 +82,4 @@ QPushButton#PrimaryButton {
 
 QPushButton#PrimaryButton:hover {
     background-color: #B0A7EF;
-}
-
-QPushButton:pressed {
-    background-color: #A097DF;
 }

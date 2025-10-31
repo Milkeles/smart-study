@@ -1,10 +1,10 @@
-/* @file MainWindow.h
+/**
+ * @file MainWindow.h
  * @brief Main window view of the Smart Study application
  * 
  * This class provides the primary UI container for the application,
  * managing navigation between different views (FlashCards, Pomodoro, etc.)
  * 
- * @version 1.0.0
  * @author Hristo T. Hristov (milkeles)
  * @date Created: 30/10/2025
  * @date Updated: 30/10/2025
@@ -18,6 +18,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QPushButton>
+#include "presentation/widgets/LiftButton.h"
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -27,7 +28,7 @@ private:
     QWidget* centralWidget;
     QVBoxLayout* layout;
     QLabel* titleLabel;
-    QPushButton* flashcardsButton;
+    LiftButton* flashcardsButton;
     QPushButton* pomodoroButton;
 };
 

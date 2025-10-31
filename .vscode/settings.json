@@ -9,6 +9,10 @@
   "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
   "files.associations": {
     "qfile": "cpp",
-    "qapplication": "cpp"
+    "qapplication": "cpp",
+    "qgraphicsdropshadoweffect": "cpp",
+    "chrono": "cpp",
+    "qwidget": "cpp",
+    "qvboxlayout": "cpp"
   }
 }
