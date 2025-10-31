@@ -71,15 +71,18 @@ QPushButton {
     min-width: 40px;
 }
 
-QPushButton:pressed {
-    margin-top: -2px;
-    margin-bottom: 2px;
-}
-
 QPushButton#PrimaryButton {
     background-color: #C0B7FF;
 }
 
-QPushButton#PrimaryButton:hover {
+QPushButton#PrimaryButton:pressed {
     background-color: #B0A7EF;
+}
+
+QPushButton#SecondaryButton {
+    background-color: #8BA8FF;
+}
+
+QPushButton#SecondaryButton:pressed {
+    background-color: #6F8EE3;
 }

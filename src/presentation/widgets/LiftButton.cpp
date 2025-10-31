@@ -1,3 +1,5 @@
+// TODO: Clipping issue still persists. Fix tomorrow!
+
 #include "LiftButton.h"
 #include <QEvent>
 #include <QEasingCurve>
