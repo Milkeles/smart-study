@@ -86,3 +86,4 @@ QPushButton#SecondaryButton {
 QPushButton#SecondaryButton:pressed {
     background-color: #6F8EE3;
 }
+

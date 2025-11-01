@@ -13,6 +13,7 @@
     "qgraphicsdropshadoweffect": "cpp",
     "chrono": "cpp",
     "qwidget": "cpp",
-    "qvboxlayout": "cpp"
+    "qvboxlayout": "cpp",
+    "qevent": "cpp"
   }
 }

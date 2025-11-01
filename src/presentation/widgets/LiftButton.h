@@ -23,6 +23,7 @@ protected:
 private:
     QPushButton* m_button;
     QPropertyAnimation* m_anim;
+    QVBoxLayout* m_layout;
 };
 
 
