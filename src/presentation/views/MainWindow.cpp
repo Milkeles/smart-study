@@ -12,7 +12,6 @@
 #include <QFile>
 
 #include "utils/GuiUtils.h"
-#include "presentation/widgets/LiftButton.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     
@@ -24,13 +23,11 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     titleLabel = new QLabel("Hello world!", centralWidget);
     titleLabel->setObjectName("titleLabel");
     
-    flashcardsButton = new LiftButton("Flash Cards", centralWidget);
+    flashcardsButton = new QPushButton("Flash Cards", centralWidget);
     flashcardsButton->setObjectName("PrimaryButton");
-    flashcardsButton->setGraphicsEffect(GuiUtils::makeShadow());
 
     pomodoroButton = new QPushButton("Pomodoro Timer", centralWidget);
     pomodoroButton->setObjectName("PrimaryButton");
-    pomodoroButton->setGraphicsEffect(GuiUtils::makeShadow());
 
     layout->setContentsMargins(20, 20, 20, 20);
     layout->setSpacing(10);

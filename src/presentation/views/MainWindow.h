@@ -18,7 +18,6 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QPushButton>
-#include "presentation/widgets/LiftButton.h"
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -28,7 +27,7 @@ private:
     QWidget* centralWidget;
     QVBoxLayout* layout;
     QLabel* titleLabel;
-    LiftButton* flashcardsButton;
+    QPushButton* flashcardsButton;
     QPushButton* pomodoroButton;
 };
 

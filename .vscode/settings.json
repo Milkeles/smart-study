@@ -14,6 +14,7 @@
     "chrono": "cpp",
     "qwidget": "cpp",
     "qvboxlayout": "cpp",
-    "qevent": "cpp"
+    "qevent": "cpp",
+    "qobject": "cpp"
   }
 }
