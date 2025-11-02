@@ -20,8 +20,8 @@ int main(int argc, char *argv[]) {
     GuiUtils::installGlobalEffect<QPushButton>([](QWidget* w){ GuiUtils::addTranslateEffect(w); },
                                                GuiUtils::WidgetState::Hover);
 
-    GuiUtils::installGlobalEffect<QPushButton>([](QWidget* w){ GuiUtils::addTranslateEffect(w, {0, 4}, 1); },
-                                               GuiUtils::WidgetState::Pressed);
+    // GuiUtils::installGlobalEffect<QPushButton>([](QWidget* w){ GuiUtils::addTranslateEffect(w, {0, }, 1); },
+    //                                            GuiUtils::WidgetState::Pressed);
 
     MainWindow window;
     window.show();

@@ -26,10 +26,11 @@
 #include <QSet>
 #include <QApplication>
 #include <QEvent>
+#include <QTimer>
 
 class TranslateFilter : public QObject {
     Q_OBJECT
-    
+
     QWidget* target;
     QPoint offset;
     int duration;
