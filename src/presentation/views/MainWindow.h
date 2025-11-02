@@ -1,10 +1,11 @@
-/* @file MainWindow.h
+/**
+ * @file MainWindow.h
  * @brief Main window view of the Smart Study application
  * 
  * This class provides the primary UI container for the application,
  * managing navigation between different views (FlashCards, Pomodoro, etc.)
  * 
- * @author Hristo Hristov
+ * @author Hristo T. Hristov (milkeles)
  * @date Created: 30/10/2025
  * @date Updated: 30/10/2025
  */

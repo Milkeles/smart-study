@@ -1,0 +1,160 @@
+/**
+ * @file main.qss
+ * @brief This is the main Qt stylesheet used within the project.
+ * 
+ * @author Hristo T. Hristov (milkeles)
+ * @date Created: 30/10/2025 (dd/mm/yyyy)
+ * @date Updated: 30/10/2025 (dd/mm/yyyy)
+ */
+
+/* Backgrounds */
+QWidget {
+    color: #212529;
+    font-family: "Inter";
+    font-size: 16px;
+    padding: 16px;
+}
+
+QWidget#background1 {
+    background-color: #FAFBFC;
+}
+
+QWidget#background2 {
+    background-color: #F1F3F5;
+}
+
+/** Text **/
+QLabel {
+    font-size: 16px;
+    font-weight: 400;
+    color: #212529;
+}
+
+QLabel#small {
+    font-size: 14px;
+}
+
+QLabel#secondary-text {
+    color: #434A4F;
+}
+
+QLabel#small-secondary-text {
+    color: #434A4F;
+    font-size: 14px;
+}
+
+/* Headings */
+QLabel#h1 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+QLabel#h2 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+QLabel#h3 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/** Buttons **/
+QPushButton {
+    color: #212529;
+    border: none;
+    border-radius: 14px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    min-height: 40px;
+    min-width: 40px;
+}
+
+/* Primary Button */
+QPushButton#PrimaryButton {
+    background-color: #C0B7FF;
+}
+
+QPushButton#PrimaryButton:pressed {
+    background-color: #B0A7EF;
+}
+
+/* Secondary Button */
+QPushButton#PrimaryButton:disabled {
+    background-color: #D6D8DC;
+    color: #9A9DA1;
+}
+
+QPushButton#SecondaryButton {
+    background-color: #8BA8FF;
+}
+
+QPushButton#SecondaryButton:pressed {
+    background-color: #6F8EE3;
+}
+
+QPushButton#SecondaryButton:disabled {
+    background-color: #D6D8DC;
+    color: #9A9DA1;
+}
+
+/* Secondary Button Outlined */
+QPushButton#SecondaryButtonOutline {
+    background: transparent;
+    border: 2px solid #8BA8FF;
+    color: #212529;
+}
+
+QPushButton#SecondaryButtonOutline:pressed {
+    border-color: #6F8EE3;
+    background-color: rgba(111, 142, 227, 0.1);
+}
+
+/** Statuses **/
+QLabel#success {
+    color: #06D6A0;
+}
+
+QLabel#warning {
+    color: #FFD166;
+}
+
+QLabel#error {
+    color: #EF476F;
+    /* Do not use on small text over colored background due to contrast */
+}
+
+QWidget#success-bg {
+    background-color: rgba(6, 214, 160, 0.15);
+}
+
+QWidget#warning-bg {
+    background-color: rgba(255, 209, 102, 0.2);
+}
+
+QWidget#error-bg {
+    background-color: rgba(239, 71, 111, 0.15);
+}
+
+/** Keyboard Focus **/
+QPushButton:focus, QLineEdit:focus {
+    outline: 2px solid #8BA8FF;
+    outline-offset: 2px;
+}
+
+/* Disabled state globally */
+*:disabled {
+    color: #9A9DA1;
+}
+
+/** Classes for margins **/
+QWidget[class~="margin-8"] { margin: 8px; }
+QWidget[class~="margin-16"] { margin: 16px; }
+QWidget[class~="margin-24"] { margin: 24px; }
+QWidget[class~="margin-32"] { margin: 32px; }
+
+QWidget[class~="padding-8"] { padding: 8px; }
+QWidget[class~="padding-16"] { padding: 16px; }
+QWidget[class~="padding-24"] { padding: 24px; }
+QWidget[class~="padding-32"] { padding: 32px; }

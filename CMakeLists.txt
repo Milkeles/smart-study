@@ -33,6 +33,7 @@ endif()
 # Main executable
 file(GLOB_RECURSE SOURCES 
     "src/*.cpp"
+    "src/*.h"
 )
 
 add_executable(smart-study

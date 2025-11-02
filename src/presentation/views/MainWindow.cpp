@@ -1,4 +1,5 @@
-/* @file MainWindow.cpp
+/**
+ * @file MainWindow.cpp
  * @brief Implementation of the MainWindow.h class.
  * 
  * @author Hristo T. Hristov (milkeles)
@@ -8,24 +9,31 @@
 
 #include "MainWindow.h"
 
+#include <QFile>
+
+#include "utils/GuiUtils.h"
+
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
+    
     centralWidget = new QWidget(this);
+    centralWidget->setObjectName("background1");
+    
     layout = new QVBoxLayout(centralWidget);
     
     titleLabel = new QLabel("Hello world!", centralWidget);
-    titleLabel->setStyleSheet("font-size: 28px; color: #212529;");
+    titleLabel->setObjectName("titleLabel");
     
     flashcardsButton = new QPushButton("Flash Cards", centralWidget);
+    flashcardsButton->setObjectName("PrimaryButton");
+
     pomodoroButton = new QPushButton("Pomodoro Timer", centralWidget);
-    
-    // Example buttons, remove later.
+    pomodoroButton->setObjectName("SecondaryButtonOutline");
+
+    layout->setContentsMargins(20, 20, 20, 20);
+    layout->setSpacing(10);
     layout->addWidget(titleLabel, 0, Qt::AlignCenter);
     layout->addWidget(flashcardsButton);
     layout->addWidget(pomodoroButton);
-
-    centralWidget->setStyleSheet("background-color: #FAFBFC;");
-    flashcardsButton->setStyleSheet("color: #212529;");
-    pomodoroButton->setStyleSheet("color: #212529");
     
     setCentralWidget(centralWidget);
     setWindowTitle("Smart Study");
