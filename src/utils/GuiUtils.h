@@ -3,8 +3,9 @@
  * @brief Namespace of GUI Utilities
  *
  * This namespace includes useful utilities that can be used across multiple UI views.
- * - addShadowEffect - adds dropshadow to Qt elements.
- * - addLiftEffect   - adds lift effect on hover to Qt elements.
+ * - addShadowEffect() - adds dropshadow to Qt elements.
+ * - addTranslateEffect() - adds translation effect on hover to Qt elements.
+ * - installGlobalEffect() - applies certain effect to all widgets of given type.
  * 
  * Libraries:
  * - QGraphicsDropShadowEffect - necessary for the drop shadow effect.

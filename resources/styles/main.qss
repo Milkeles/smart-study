@@ -138,10 +138,10 @@ QWidget#error-bg {
 }
 
 /** Keyboard Focus **/
-QPushButton:focus, QLineEdit:focus {
+/* QPushButton:focus, QLineEdit:focus {
     outline: 2px solid #8BA8FF;
     outline-offset: 2px;
-}
+} */
 
 /* Disabled state globally */
 *:disabled {
