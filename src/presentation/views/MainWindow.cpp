@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     flashcardsButton->setObjectName("PrimaryButton");
 
     pomodoroButton = new QPushButton("Pomodoro Timer", centralWidget);
-    pomodoroButton->setObjectName("PrimaryButton");
+    pomodoroButton->setObjectName("SecondaryButtonOutline");
 
     layout->setContentsMargins(20, 20, 20, 20);
     layout->setSpacing(10);
