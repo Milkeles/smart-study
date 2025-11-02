@@ -26,8 +26,11 @@
 #include <QSet>
 #include <QApplication>
 #include <QEvent>
-#include <QTimer>
 
+/**
+ * @class TranslateFilter
+ * @brief Event filter that applies a translation (lift) animation to a widget on hover.
+ */
 class TranslateFilter : public QObject {
     Q_OBJECT
 
@@ -98,6 +101,16 @@ namespace GuiUtils {
                                     WidgetState triggerState);
 }
 
+/**
+ * @class GlobalEffectFilter
+ * @brief Event filter for automatically applying visual effects to specific widget types.
+ *
+ * This class is used internally by GuiUtils::installGlobalEffect(). It monitors 
+ * widgets of the specified type and applies the given effect function when the 
+ * desired trigger state occurs.
+ * 
+ * @tparam WidgetType The Qt widget type to monitor (e.g., QPushButton, QLabel).
+ */
 template<typename WidgetType>
 class GlobalEffectFilter : public QObject {
     GuiUtils::WidgetState triggerState;

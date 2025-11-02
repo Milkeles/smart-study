@@ -20,22 +20,22 @@ bool TranslateFilter::eventFilter(QObject* obj, QEvent* event) {
         return QObject::eventFilter(obj, event);
 
     switch (event->type()) {
-    case QEvent::Enter:
-        if (original.isNull())
-            original = target->geometry();
-        animateTo(original.translated(offset));
-        break;
-    case QEvent::Leave:
-        animateTo(original);
-        break;
-    case QEvent::MouseButtonPress:
-        animateTo(original.translated(offset / 2));
-        break;
-    case QEvent::MouseButtonRelease:
-        animateTo(original.translated(offset));
-        break;
-    default:
-        break;
+        case QEvent::Enter:
+            if (original.isNull())
+                original = target->geometry();
+            animateTo(original.translated(offset));
+            break;
+        case QEvent::Leave:
+            animateTo(original);
+            break;
+        case QEvent::MouseButtonPress:
+            animateTo(original.translated(offset / 2));
+            break;
+        case QEvent::MouseButtonRelease:
+            animateTo(original.translated(offset));
+            break;
+        default:
+            break;
     }
     return QObject::eventFilter(obj, event);
 }
@@ -43,6 +43,7 @@ bool TranslateFilter::eventFilter(QObject* obj, QEvent* event) {
 void TranslateFilter::animateTo(const QRect& endRect) {
     QRect start = target->geometry();
     auto* anim = new QPropertyAnimation(target, "geometry");
+
     anim->setDuration(duration);
     anim->setStartValue(start);
     anim->setEndValue(endRect);
@@ -50,7 +51,7 @@ void TranslateFilter::animateTo(const QRect& endRect) {
     anim->start(QAbstractAnimation::DeleteWhenStopped);
 }
 
-// Effect implementations
+// Effects implementations
 void GuiUtils::addShadowEffect(QWidget* widget, int blur, QPointF offset, QColor color) {
     if (!widget) return;
     auto* effect = new QGraphicsDropShadowEffect();
