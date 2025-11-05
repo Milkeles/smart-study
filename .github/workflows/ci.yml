@@ -13,25 +13,34 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
+
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install -y cmake ninja-build qt6-base-dev libsqlite3-dev
-      
+          sudo apt install -y cmake ninja-build qt6-base-dev libsqlite3-dev libxkbcommon-dev
+
+      - name: Install SQLiteCpp
+        run: |
+          git clone https://github.com/SRombauts/SQLiteCpp.git
+          cd SQLiteCpp
+          cmake -B build -DCMAKE_BUILD_TYPE=Release -DSQLITECPP_INTERNAL_SQLITE=OFF
+          sudo cmake --build build --target install
+
       - name: Configure CMake
         run: |
           cmake -B build -G Ninja
-      
+
       - name: Build
         run: |
           cmake --build build
-      
+
       - name: Upload artifacts (optional)
+        if: ${{ env.ACT != 'true' }} # Runs only when in github
         uses: actions/upload-artifact@v3
         with:
           name: smart-study-linux
           path: build/bin/smart-study
+
 
   build-windows:
     runs-on: windows-latest
