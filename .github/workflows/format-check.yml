@@ -1,0 +1,25 @@
+# Validates the code format to ensure consistency.
+name: Clang Format Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  clang-format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install clang-format
+        run: sudo apt install -y clang-format
+
+      - name: Check code formatting
+        run: |
+          FILES=$(find src include -regex '.*\.\(cpp\|hpp\|h\|cc\|cxx\)')
+          echo "Checking the following files:"
+          echo "$FILES"
+          clang-format --dry-run --Werror $FILES

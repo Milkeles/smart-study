@@ -1,0 +1,65 @@
+# Test successful build on both platforms (Windows & Linux), later add tests here.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y cmake ninja-build qt6-base-dev libsqlite3-dev
+      
+      - name: Configure CMake
+        run: |
+          cmake -B build -G Ninja
+      
+      - name: Build
+        run: |
+          cmake --build build
+      
+      - name: Upload artifacts (optional)
+        uses: actions/upload-artifact@v3
+        with:
+          name: smart-study-linux
+          path: build/bin/smart-study
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.5.0'
+      
+      - name: Setup vcpkg
+        run: |
+          git clone https://github.com/Microsoft/vcpkg.git
+          .\vcpkg\bootstrap-vcpkg.bat
+          .\vcpkg\vcpkg install sqlite3:x64-windows sqlitecpp:x64-windows
+      
+      - name: Configure CMake
+        run: |
+          cmake -B build -DCMAKE_TOOLCHAIN_FILE=vcpkg/scripts/buildsystems/vcpkg.cmake
+      
+      - name: Build
+        run: |
+          cmake --build build --config Release
+      
+      - name: Upload artifacts (optional)
+        uses: actions/upload-artifact@v3
+        with:
+          name: smart-study-windows
+          path: build/Release/smart-study.exe
