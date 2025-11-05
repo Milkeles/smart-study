@@ -36,7 +36,7 @@ jobs:
 
       - name: Upload artifacts (optional)
         if: ${{ env.ACT != 'true' }} # Runs only when in github
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: smart-study-linux
           path: build/bin/smart-study
@@ -68,7 +68,7 @@ jobs:
           cmake --build build --config Release
       
       - name: Upload artifacts (optional)
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: smart-study-windows
           path: build/Release/smart-study.exe
