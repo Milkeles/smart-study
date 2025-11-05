@@ -17,9 +17,6 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
-# Find SQLite3
-find_package(SQLite3 REQUIRED)
-
 # Find SQLiteCpp (from vcpkg)
 find_package(SQLiteCpp CONFIG REQUIRED)
 
@@ -36,8 +33,12 @@ file(GLOB_RECURSE SOURCES
     "src/*.h"
 )
 
+# Stylesheet
+file(GLOB_RECURSE RESOURCES "resources.qrc")
+
 add_executable(smart-study
     ${SOURCES}
+    ${RESOURCES}
 )
 
 target_include_directories(smart-study PRIVATE
