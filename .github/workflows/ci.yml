@@ -1,0 +1,72 @@
+# Test successful build on both platforms (Windows & Linux), later add tests here.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y cmake ninja-build qt6-base-dev libsqlite3-dev libxkbcommon-dev
+
+      - name: Install SQLiteCpp
+        run: |
+          git clone https://github.com/SRombauts/SQLiteCpp.git
+          cd SQLiteCpp
+          cmake -B build -DCMAKE_BUILD_TYPE=Release -DSQLITECPP_INTERNAL_SQLITE=OFF
+          sudo cmake --build build --target install
+
+      - name: Configure CMake
+        run: |
+          cmake -B build -G Ninja
+
+      - name: Build
+        run: |
+          cmake --build build
+
+      - name: Upload artifacts (optional)
+        if: ${{ env.ACT != 'true' }} # Runs only when in github
+        uses: actions/upload-artifact@v4
+        with:
+          name: smart-study-linux
+          path: build/bin/smart-study
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.5.0'
+      
+      - name: Setup vcpkg
+        run: |
+          git clone https://github.com/Microsoft/vcpkg.git
+          .\vcpkg\bootstrap-vcpkg.bat
+          .\vcpkg\vcpkg install --triplet x64-windows
+      
+      - name: Configure CMake
+        run: cmake -B build -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}\vcpkg\scripts\buildsystems\vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=x64-windows
+      
+      - name: Build
+        run: |
+          cmake --build build --config Release
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: smart-study-windows
+          path: build/Release/smart-study.exe
