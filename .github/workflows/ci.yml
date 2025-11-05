@@ -41,7 +41,6 @@ jobs:
           name: smart-study-linux
           path: build/bin/smart-study
 
-
   build-windows:
     runs-on: windows-latest
     steps:
@@ -57,11 +56,11 @@ jobs:
         run: |
           git clone https://github.com/Microsoft/vcpkg.git
           .\vcpkg\bootstrap-vcpkg.bat
-          .\vcpkg\vcpkg install sqlite3:x64-windows sqlitecpp:x64-windows
+          .\vcpkg\vcpkg install --triplet x64-windows
       
       - name: Configure CMake
         run: |
-          cmake -B build -DCMAKE_TOOLCHAIN_FILE=vcpkg/scripts/buildsystems/vcpkg.cmake
+          cmake -B build -DCMAKE_TOOLCHAIN_FILE=vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows
       
       - name: Build
         run: |
