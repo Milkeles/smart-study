@@ -75,4 +75,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: smart-study-windows
-          path: build/Release/smart-study.exe
+          path: build/bin/smart-study.exe
