@@ -60,13 +60,15 @@ jobs:
       
       - name: Configure CMake
         run: |
-          cmake -B build -DCMAKE_TOOLCHAIN_FILE=vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows
+          cmake -B build ^
+            -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}\vcpkg\scripts\buildsystems\vcpkg.cmake ^
+            -DVCPKG_TARGET_TRIPLET=x64-windows
       
       - name: Build
         run: |
           cmake --build build --config Release
       
-      - name: Upload artifacts (optional)
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: smart-study-windows
