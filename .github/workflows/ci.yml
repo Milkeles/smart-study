@@ -28,7 +28,7 @@ jobs:
 
       - name: Configure CMake
         run: |
-          cmake -B build -G Ninja
+          cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
 
       - name: Build
         run: |
@@ -41,38 +41,47 @@ jobs:
           name: smart-study-linux
           path: build/bin/smart-study
 
-build-windows:
-  runs-on: windows-latest
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v3
-      with:
-        version: '6.5.0'
-    
-    - name: Setup vcpkg
-      shell: cmd
-      run: |
-        git clone https://github.com/Microsoft/vcpkg.git
-        cd vcpkg
-        bootstrap-vcpkg.bat
-        vcpkg install --triplet x64-windows
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Configure CMake
-      shell: cmd
-      run: >
-        cmake -B build
-        -DCMAKE_TOOLCHAIN_FILE=%GITHUB_WORKSPACE%\vcpkg\scripts\buildsystems\vcpkg.cmake
-        -DVCPKG_TARGET_TRIPLET=x64-windows
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.5.0'
 
-    - name: Build
-      shell: cmd
-      run: cmake --build build --config Release
+      - name: Setup vcpkg
+        shell: cmd
+        run: |
+          git clone https://github.com/Microsoft/vcpkg.git
+          cd vcpkg
+          bootstrap-vcpkg.bat
+          vcpkg install --triplet x64-windows
 
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: smart-study-windows
-        path: build/Release/smart-study.exe
+      - name: Configure CMake
+        shell: cmd
+        run: >
+          cmake -B build
+          -DCMAKE_TOOLCHAIN_FILE=%GITHUB_WORKSPACE%\vcpkg\scripts\buildsystems\vcpkg.cmake
+          -DVCPKG_TARGET_TRIPLET=x64-windows
+          -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        shell: cmd
+        run: cmake --build build --config Release
+
+      - name: Deploy Qt dependencies
+        shell: cmd
+        run: windeployqt build\bin\smart-study.exe --no-translations --release
+
+      - name: Create ZIP
+        shell: pwsh
+        run: Compress-Archive -Path build/bin/* -DestinationPath smart-study-windows.zip
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: smart-study-windows
+          path: smart-study-windows.zip

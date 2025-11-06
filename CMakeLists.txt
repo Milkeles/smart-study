@@ -6,7 +6,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Output directories
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/bin)
 
 # Options
 option(BUILD_TESTING "Build tests" ON)
@@ -33,7 +34,7 @@ file(GLOB_RECURSE SOURCES
     "src/*.h"
 )
 
-# Stylesheet
+# Stylesheet (Qt resource)
 file(GLOB_RECURSE RESOURCES "resources.qrc")
 
 add_executable(smart-study
@@ -48,9 +49,17 @@ target_include_directories(smart-study PRIVATE
 target_link_libraries(smart-study PRIVATE
     Qt6::Core
     Qt6::Widgets
-    SQLite::SQLite3
     SQLiteCpp
 )
+
+# Handle platform-specific SQLite target name
+if (TARGET SQLite::SQLite3)
+    target_link_libraries(smart-study PRIVATE SQLite::SQLite3)
+elseif (TARGET unofficial::sqlite3::sqlite3)
+    target_link_libraries(smart-study PRIVATE unofficial::sqlite3::sqlite3)
+else()
+    message(WARNING "No known SQLite target found — please check package installation.")
+endif()
 
 # Tests (to be added later)
 if(BUILD_TESTING)
