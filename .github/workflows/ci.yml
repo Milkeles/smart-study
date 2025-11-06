@@ -46,12 +46,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
           version: '6.5.0'
-      
+
       - name: Setup vcpkg
         shell: cmd
         run: |
@@ -66,13 +66,23 @@ jobs:
           cmake -B build
           -DCMAKE_TOOLCHAIN_FILE=%GITHUB_WORKSPACE%\vcpkg\scripts\buildsystems\vcpkg.cmake
           -DVCPKG_TARGET_TRIPLET=x64-windows
+          -DCMAKE_BUILD_TYPE=Release
 
       - name: Build
         shell: cmd
         run: cmake --build build --config Release
 
-      - name: Upload artifacts
+      - name: Deploy Qt dependencies
+        shell: cmd
+        run: windeployqt build\bin\smart-study.exe --no-translations --release
+
+      - name: Create ZIP
+        shell: pwsh
+        run: Compress-Archive -Path build/bin/* -DestinationPath smart-study-windows.zip
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: smart-study-windows
-          path: build/bin/smart-study.exe
+          path: smart-study-windows.zip
+
