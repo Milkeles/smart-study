@@ -85,4 +85,3 @@ jobs:
         with:
           name: smart-study-windows
           path: smart-study-windows.zip
-
