@@ -73,7 +73,7 @@ void MainWindow::setupUI() {
 
     setCentralWidget(centralWidget);
     setWindowTitle("Smart Study");
-    resize(1600, 900);
+    showMaximized();
 }
 
 void MainWindow::createMockTextWindow(const QString& topic,
@@ -103,7 +103,7 @@ void MainWindow::createMockTextWindow(const QString& topic,
 
     mdiArea->addSubWindow(subWindow);
 
-    subWindow->resize(600, 500);
+    subWindow->showMaximized();
     subWindow->show();
 
     static int windowOffset = 0;
@@ -117,6 +117,7 @@ void MainWindow::onNoteSelected(const QString& topic, const QString& note) {
     createMockTextWindow(topic, note);
 }
 
+// TODO: Make this thing's style better.
 void MainWindow::onTimerToggle() {
     bool isRunning = !timerWidget->isRunning();
     timerWidget->setRunning(isRunning);
