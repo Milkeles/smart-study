@@ -180,6 +180,52 @@ QScrollArea QWidget {
     background: transparent;
 }
 
+QScrollBar:vertical {
+    background: transparent;      /* no dark bar */
+    width: 8px;                   /* slim */
+    margin: 8px 2px 8px 0;        /* some padding inside the card */
+    border-radius: 4px;
+}
+
+QScrollBar::handle:vertical {
+    background: #B0B3B8;          /* light grey thumb */
+    min-height: 24px;
+    border-radius: 4px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #9A9EA4;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+    width: 0px;
+    border: none;
+    background: transparent;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: transparent;
+}
+
+/* Small square icon button for the Topics "+" */
+QPushButton#TopicsAddButton {
+    background-color: #8BA8FF;          /* secondary fill */
+    border-radius: 14px;                /* rounded corners */
+    padding: 0;                         /* no extra padding */
+}
+
+QPushButton#TopicsAddButton:pressed {
+    background-color: #6F8EE3;
+}
+
+QPushButton#TopicsAddButton:disabled {
+    background-color: #D6D8DC;
+    color: #9A9DA1;
+}
+
 
 /* =========================================
    MDI AREA (IDE-STYLE WINDOWS)

@@ -88,11 +88,9 @@ void TimerWidget::drawCircularProgress(QPainter& painter) {
     int cy = rect.center().y();
     int r  = 80;
 
-    // Background ring
     painter.setPen(QPen(QColor("#F1F3F5"), 12, Qt::SolidLine, Qt::RoundCap));
     painter.drawEllipse(cx - r, cy - r, r * 2, r * 2);
 
-    // Progress arc
     QRectF arcRect(cx - r, cy - r, r * 2, r * 2);
     int startAngle = 90 * 16;
     int spanAngle  = -static_cast<int>(m_progress * 360 * 16);
@@ -121,7 +119,6 @@ void TimerWidget::drawPlayPauseState(QPainter& painter) {
     int cy = rect.center().y();
     int r  = 80;
 
-    // Large play triangle
     QPainterPath path;
     path.moveTo(cx - 40, cy - 50);
     path.lineTo(cx - 40, cy + 50);
@@ -129,7 +126,6 @@ void TimerWidget::drawPlayPauseState(QPainter& painter) {
     path.closeSubpath();
     painter.fillPath(path, QColor("#C0B7FF"));
 
-    // "Click to start" text
     QFont font = painter.font();
     font.setPointSize(14);
     painter.setFont(font);

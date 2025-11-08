@@ -27,7 +27,7 @@ private:
     void drawPlayPauseState(QPainter& painter);
 
     bool  m_running;
-    float m_progress; // 0.0 to 1.0
+    float m_progress;
 
     QPushButton* playButton;
     QPushButton* settingsButton;
