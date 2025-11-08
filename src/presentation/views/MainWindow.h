@@ -13,39 +13,39 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
 #include <QHBoxLayout>
+#include <QMainWindow>
 #include <QMdiArea>
 
 #include "presentation/widgets/Sidebar.h"
 #include "presentation/widgets/TimerWidget.h"
 
 class MainWindow : public QMainWindow {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+  explicit MainWindow(QWidget *parent = nullptr);
 
 private slots:
-    void onNoteSelected(const QString& topic, const QString& note);
-    void onTimerToggle();
-    void onFlashCardsClicked();
+  void onNoteSelected(const QString &topic, const QString &note);
+  void onTimerToggle();
+  void onFlashCardsClicked();
 
 private:
-    void setupUI();
-    void createMockTextWindow(const QString& topic, const QString& note);
+  void setupUI();
+  void createMockTextWindow(const QString &topic, const QString &note);
 
-    QWidget*   centralWidget;
-    QHBoxLayout* mainLayout;
+  QWidget *centralWidget;
+  QHBoxLayout *mainLayout;
 
-    // Left sidebar
-    Sidebar* sidebar;
+  // Left sidebar
+  Sidebar *sidebar;
 
-    // Center - IDE-style MDI area
-    QMdiArea* mdiArea;
+  // Center - IDE-style MDI area
+  QMdiArea *mdiArea;
 
-    // Right panel - Timer
-    TimerWidget* timerWidget;
+  // Right panel - Timer
+  TimerWidget *timerWidget;
 };
 
 #endif // MAINWINDOW_H

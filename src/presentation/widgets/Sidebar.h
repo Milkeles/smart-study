@@ -1,9 +1,9 @@
 /**
  * @file Sidebar.h
  * @brief Sidebar navigation component
- * 
+ *
  * Contains main navigation buttons and topics panel
- * 
+ *
  * @author Hristo T. Hristov (milkeles)
  * @date Created: 02/11/2025
  * @date Updated: 02/11/2025
@@ -12,35 +12,35 @@
 #ifndef SIDEBAR_H
 #define SIDEBAR_H
 
-#include <QWidget>
+#include "TopicsPanel.h"
+#include <QFrame>
 #include <QPushButton>
 #include <QVBoxLayout>
-#include <QFrame>
-#include "TopicsPanel.h"
+#include <QWidget>
 
 class Sidebar : public QWidget {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    explicit Sidebar(QWidget* parent = nullptr);
+  explicit Sidebar(QWidget *parent = nullptr);
 
 signals:
-    void importClicked();
-    void flashCardsClicked();
-    void settingsClicked();
-    void topicSelected(const QString& topicName);
-    void noteSelected(const QString& topicName, const QString& noteName);
+  void importClicked();
+  void flashCardsClicked();
+  void settingsClicked();
+  void topicSelected(const QString &topicName);
+  void noteSelected(const QString &topicName, const QString &noteName);
 
 private:
-    void setupUI();
+  void setupUI();
 
-    QVBoxLayout* mainLayout;
+  QVBoxLayout *mainLayout;
 
-    QPushButton* importButton;
-    QPushButton* flashCardsButton;
-    QPushButton* settingsButton;
+  QPushButton *importButton;
+  QPushButton *flashCardsButton;
+  QPushButton *settingsButton;
 
-    TopicsPanel* topicsPanel;
+  TopicsPanel *topicsPanel;
 };
 
 #endif // SIDEBAR_H

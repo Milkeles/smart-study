@@ -6,53 +6,53 @@
 
 /*
  * List only button types that are not controlled by layouts!
- * Layouts break the position when you take away their control and later return it.
-  */
+ * Layouts break the position when you take away their control and later return
+ * it.
+ */
 namespace {
-const QSet<QString> kAnimatedButtons = {
-    "PrimaryButton",
-    "SecondaryButton",
-    "TopicsAddButton"
-};
+const QSet<QString> kAnimatedButtons = {"PrimaryButton", "SecondaryButton",
+                                        "TopicsAddButton"};
 }
 
 int main(int argc, char *argv[]) {
-    QApplication app(argc, argv);
+  QApplication app(argc, argv);
 
-    // Load global stylesheet
-    QFile styleFile(":/resources/styles/main.qss");
-    if (styleFile.open(QFile::ReadOnly)) {
-        const QString style = QLatin1String(styleFile.readAll());
-        app.setStyleSheet(style);
-    }
+  // Load global stylesheet
+  QFile styleFile(":/resources/styles/main.qss");
+  if (styleFile.open(QFile::ReadOnly)) {
+    const QString style = QLatin1String(styleFile.readAll());
+    app.setStyleSheet(style);
+  }
 
-    // Global shadow effect – only for selected buttons
-    GuiUtils::installGlobalEffect<QPushButton>(
-        [](QWidget *w) {
-            auto *btn = qobject_cast<QPushButton*>(w);
-            if (!btn) return;
+  // Global shadow effect – only for selected buttons
+  GuiUtils::installGlobalEffect<QPushButton>(
+      [](QWidget *w) {
+        auto *btn = qobject_cast<QPushButton *>(w);
+        if (!btn)
+          return;
 
-            if (!kAnimatedButtons.contains(btn->objectName()))
-                return;
+        if (!kAnimatedButtons.contains(btn->objectName()))
+          return;
 
-            GuiUtils::addShadowEffect(btn);
-        },
-        GuiUtils::WidgetState::Default);
+        GuiUtils::addShadowEffect(btn);
+      },
+      GuiUtils::WidgetState::Default);
 
-    GuiUtils::installGlobalEffect<QPushButton>(
-        [](QWidget *w) {
-            auto *btn = qobject_cast<QPushButton*>(w);
-            if (!btn) return;
+  GuiUtils::installGlobalEffect<QPushButton>(
+      [](QWidget *w) {
+        auto *btn = qobject_cast<QPushButton *>(w);
+        if (!btn)
+          return;
 
-            if (!kAnimatedButtons.contains(btn->objectName()))
-                return;
+        if (!kAnimatedButtons.contains(btn->objectName()))
+          return;
 
-            GuiUtils::addTranslateEffect(btn);
-        },
-        GuiUtils::WidgetState::Hover);
+        GuiUtils::addTranslateEffect(btn);
+      },
+      GuiUtils::WidgetState::Hover);
 
-    MainWindow window;
-    window.show();
+  MainWindow window;
+  window.show();
 
-    return app.exec();
+  return app.exec();
 }
