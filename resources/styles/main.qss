@@ -171,7 +171,6 @@ QPushButton#noteItem:checked {
     color: #8BA8FF;
 }
 
-/* Scroll area should never introduce dark background */
 QScrollArea {
     background: transparent;
     border: none;
@@ -181,14 +180,14 @@ QScrollArea QWidget {
 }
 
 QScrollBar:vertical {
-    background: transparent;      /* no dark bar */
-    width: 8px;                   /* slim */
-    margin: 8px 2px 8px 0;        /* some padding inside the card */
+    background: transparent;
+    width: 8px;
+    margin: 8px 2px 8px 0;
     border-radius: 4px;
 }
 
 QScrollBar::handle:vertical {
-    background: #B0B3B8;          /* light grey thumb */
+    background: #B0B3B8;
     min-height: 24px;
     border-radius: 4px;
 }
@@ -210,11 +209,10 @@ QScrollBar::sub-page:vertical {
     background: transparent;
 }
 
-/* Small square icon button for the Topics "+" */
 QPushButton#TopicsAddButton {
-    background-color: #8BA8FF;          /* secondary fill */
-    border-radius: 14px;                /* rounded corners */
-    padding: 0;                         /* no extra padding */
+    background-color: #8BA8FF;
+    border-radius: 14px;
+    padding: 0;
 }
 
 QPushButton#TopicsAddButton:pressed {
@@ -242,7 +240,6 @@ QMdiSubWindow {
     border-radius: 8px;
 }
 
-/* Hide system buttons (we also remove them in C++) */
 QMdiSubWindow::close-button,
 QMdiSubWindow::minimize-button,
 QMdiSubWindow::maximize-button {
@@ -263,8 +260,6 @@ TimerWidget {
 QWidget#timerDisplay {
     background: transparent;
 }
-
-/** Utility classes for margins & paddings **/
 
 QWidget[class~="margin-8"]  { margin: 8px; }
 QWidget[class~="margin-16"] { margin: 16px; }

@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     setupUI();
 
-    // Connect signals from sidebar and timer
+    // TODO: Services layer.
     connect(sidebar, &Sidebar::noteSelected,
             this, &MainWindow::onNoteSelected);
     connect(sidebar, &Sidebar::flashCardsClicked,
@@ -30,8 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
             this, &MainWindow::onTimerToggle);
 
     // Demo: initial windows
-    createMockTextWindow("Quantum Physics", "Introduction");
-    createMockTextWindow("C++ Programming", "Qt Basics");
+    createMockTextWindow("Quantum Computing", "Grover's search algorithm");
 }
 
 void MainWindow::setupUI() {
@@ -42,24 +41,21 @@ void MainWindow::setupUI() {
     mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->setSpacing(0);
 
-    // Left: Sidebar
     sidebar = new Sidebar(centralWidget);
     sidebar->setFixedWidth(280);
     sidebar->setObjectName("background2");
     mainLayout->addWidget(sidebar);
 
-    // Center: MDI Document Area
     mdiArea = new QMdiArea(centralWidget);
     mdiArea->setObjectName("background1");
     mdiArea->setViewMode(QMdiArea::SubWindowView);
     mdiArea->setTabsClosable(false);
     mdiArea->setTabsMovable(false);
     mdiArea->setFrameShape(QFrame::NoFrame);
-    // Force light background (Qt's default gradient can ignore QSS)
-    mdiArea->setBackground(QBrush(QColor("#FAFBFC")));
-    mainLayout->addWidget(mdiArea, /*stretch*/ 1);
 
-    // Right: Timer panel container
+    mdiArea->setBackground(QBrush(QColor("#FAFBFC")));
+    mainLayout->addWidget(mdiArea, 1);
+
     QWidget* rightPanelContainer = new QWidget(centralWidget);
     rightPanelContainer->setObjectName("background1");
     rightPanelContainer->setFixedWidth(240);
@@ -83,31 +79,22 @@ void MainWindow::setupUI() {
 void MainWindow::createMockTextWindow(const QString& topic,
                                       const QString& note)
 {
-    // Editor widget
     QTextEdit* textEdit = new QTextEdit;
     textEdit->setObjectName("background1");
     textEdit->setFrameStyle(QFrame::NoFrame);
     textEdit->setAcceptRichText(true);
     textEdit->setPlainText(
         QString("%1 / %2\n\n").arg(topic, note) +
-        "This is your note content. You can:\n"
-        "- Edit freely\n"
-        "- Resize window by dragging edges\n"
-        "- Drag window by title bar (MDI area)\n"
-        "- Auto-saves to local storage (future)\n\n"
-        "Mock content for demonstration:\n"
-        "════════════════════════════════\n\n"
-        "Key Concepts:\n"
-        "• Important theoretical points\n"
-        "• Formulas and equations\n"
-        "• Summary bullet points\n\n"
-        "References:\n"
-        "• Textbook chapter 5\n"
-        "• Lecture notes from Oct 15\n"
-        "• Online resources: example.com"
+        "Grover’s search algorithm is a quantum search algorithm, used to find elements in unsorted data of unknown size in O(sqrt(N)) time.\n"
+        "An example usecase involves having a list of N possible inputs out of which one satisfies a certain condition. \n"
+        "Classical computers would check N/2 elements on average, but quantum computation allows doing it much faster. The algorithm has five steps:\n"
+        "1. Start with n qubits in |0> state. Apply Hadamard transformation to create uniform superposition that is equally likely for every possible x.\n"
+        "2. Apply the oracle operation to flip the phase of the marked state.\n"
+        "3. Apply diffusion to increase the probability of the marked state.\n"
+        "4. Repeat about sqrt(N) times, each repetition rotates the state vector closer to the element we’re looking for.\n"
+        "5. Measure the qubits, they’re likely to give the correct element with very high probability.\n"
     );
 
-    // Custom subwindow with no OS-like frame buttons
     QMdiSubWindow* subWindow = new QMdiSubWindow;
     subWindow->setWidget(textEdit);
     subWindow->setAttribute(Qt::WA_DeleteOnClose);
@@ -119,7 +106,6 @@ void MainWindow::createMockTextWindow(const QString& topic,
     subWindow->resize(600, 500);
     subWindow->show();
 
-    // Simple cascading layout
     static int windowOffset = 0;
     const int offset = 40 * (windowOffset % 5);
     subWindow->move(offset, offset);
@@ -143,7 +129,6 @@ void MainWindow::onTimerToggle() {
 }
 
 void MainWindow::onFlashCardsClicked() {
-    // For now, clear editors to simulate mode change
     qDebug() << "Flashcards mode activated";
     mdiArea->closeAllSubWindows();
 }
