@@ -158,3 +158,15 @@ QWidget[class~="padding-8"] { padding: 8px; }
 QWidget[class~="padding-16"] { padding: 16px; }
 QWidget[class~="padding-24"] { padding: 24px; }
 QWidget[class~="padding-32"] { padding: 32px; }
+ВВ
+
+QPushButton#NewFileButton {
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+    background-color: #4CAF50;
+    border-radius: 5px;
+}
+QPushButton#NewFileButton:hover {
+    background-color: #45a049;
+}

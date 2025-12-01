@@ -18,18 +18,44 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QWidget>
+#include <QListWidget>
+#include <QDir>
+#include <QDialog>
+#include <QTextEdit>
+#include <QTextBrowser>
+#include <QFile>
+#include <QTextStream>
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
+
+
 
 class MainWindow : public QMainWindow {
   Q_OBJECT
 public:
   MainWindow(QWidget *parent = nullptr);
 
+  private slots:
+    void onTopicSelected(QTreeWidgetItem* item);
+    void loadTopics();
+    void saveMarkdown();
+    void loadMarkdown();
+    void createNewFile(); 
+
 private:
-  QWidget *centralWidget;
-  QVBoxLayout *layout;
-  QLabel *titleLabel;
-  QPushButton *flashcardsButton;
-  QPushButton *pomodoroButton;
+ QWidget *centralWidget;
+
+ QTreeWidget *topicsTree;
+
+QPushButton *flashcardsButton;
+QPushButton *importButton;
+QPushButton *settingsButton;
+QPushButton *saveButton;
+QPushButton *newFileButton; 
+
+QTextEdit *markdownEditor;
+
+QString currentFilePath;
 };
 
 #endif
