@@ -54,7 +54,8 @@ void MainWindow::setupUI() {
 
   QWidget *rightPanelContainer = new QWidget(centralWidget);
   rightPanelContainer->setObjectName("background1");
-  rightPanelContainer->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
+  rightPanelContainer->setSizePolicy(QSizePolicy::Fixed,
+                                     QSizePolicy::Expanding);
 
   QVBoxLayout *rightLayout = new QVBoxLayout(rightPanelContainer);
   rightLayout->setContentsMargins(16, 16, 16, 16);
@@ -122,8 +123,7 @@ void MainWindow::onNoteSelected(const QString &topic, const QString &note) {
 }
 
 // TODO: Make this thing's style better.
-void MainWindow::onTimerToggle() {
-}
+void MainWindow::onTimerToggle() {}
 
 void MainWindow::onFlashCardsClicked() {
   qDebug() << "Flashcards mode activated";
