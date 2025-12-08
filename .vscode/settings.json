@@ -15,6 +15,7 @@
     "qwidget": "cpp",
     "qvboxlayout": "cpp",
     "qevent": "cpp",
-    "qobject": "cpp"
+    "qobject": "cpp",
+    "qcolor": "cpp"
   }
 }

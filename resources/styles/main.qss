@@ -1,19 +1,20 @@
 /**
  * @file main.qss
  * @brief This is the main Qt stylesheet used within the project.
- * 
- * @author Hristo T. Hristov (milkeles)
- * @date Created: 30/10/2025 (dd/mm/yyyy)
- * @date Updated: 30/10/2025 (dd/mm/yyyy)
  */
 
-/* Backgrounds */
+/* =======================
+   GLOBAL
+   ======================= */
+
 QWidget {
     color: #212529;
     font-family: "Inter";
     font-size: 16px;
-    padding: 16px;
+    /* IMPORTANT: no global padding, it wrecks layouts */
 }
+
+/* Backgrounds */
 
 QWidget#background1 {
     background-color: #FAFBFC;
@@ -24,6 +25,7 @@ QWidget#background2 {
 }
 
 /** Text **/
+
 QLabel {
     font-size: 16px;
     font-weight: 400;
@@ -60,6 +62,7 @@ QLabel#h3 {
 }
 
 /** Buttons **/
+
 QPushButton {
     color: #212529;
     border: none;
@@ -80,12 +83,13 @@ QPushButton#PrimaryButton:pressed {
     background-color: #B0A7EF;
 }
 
-/* Secondary Button */
+/* Disabled */
 QPushButton#PrimaryButton:disabled {
     background-color: #D6D8DC;
     color: #9A9DA1;
 }
 
+/* Secondary Button Filled */
 QPushButton#SecondaryButton {
     background-color: #8BA8FF;
 }
@@ -112,49 +116,162 @@ QPushButton#SecondaryButtonOutline:pressed {
 }
 
 /** Statuses **/
-QLabel#success {
-    color: #06D6A0;
+
+QLabel#success { color: #06D6A0; }
+QLabel#warning { color: #FFD166; }
+QLabel#error   { color: #EF476F; }
+
+QWidget#success-bg { background-color: rgba(6, 214, 160, 0.15); }
+QWidget#warning-bg { background-color: rgba(255, 209, 102, 0.2); }
+QWidget#error-bg   { background-color: rgba(239, 71, 111, 0.15); }
+
+QWidget#timerCard {
+    background-color: #F1F3F5; /* same as background2 */
+    border-radius: 18px;
 }
 
-QLabel#warning {
-    color: #FFD166;
+/* ===== TOPICS PANEL CARD ===== */
+
+QFrame#topicsCard {
+    background-color: #F1F3F5;   /* same as background2 */
+    border-radius: 18px;
 }
 
-QLabel#error {
-    color: #EF476F;
-    /* Do not use on small text over colored background due to contrast */
+/* Topic list items */
+QPushButton#topicItem {
+    background: transparent;
+    border: none;
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 500;
+    font-size: 15px;
+    color: #212529;
+    border-radius: 8px;
+}
+QPushButton#topicItem:hover {
+    background-color: rgba(139, 168, 255, 0.1);
+}
+QPushButton#topicItem:checked {
+    background-color: rgba(192, 183, 255, 0.2);
+    color: #8BA8FF;
 }
 
-QWidget#success-bg {
-    background-color: rgba(6, 214, 160, 0.15);
+/* Note list items */
+QPushButton#noteItem {
+    background: transparent;
+    border: none;
+    text-align: left;
+    padding: 8px 12px 8px 32px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #434A4F;
+    border-radius: 6px;
+}
+QPushButton#noteItem:hover {
+    background-color: rgba(139, 168, 255, 0.08);
+}
+QPushButton#noteItem:checked {
+    background-color: rgba(139, 168, 255, 0.2);
+    font-weight: 500;
+    color: #8BA8FF;
 }
 
-QWidget#warning-bg {
-    background-color: rgba(255, 209, 102, 0.2);
+QScrollArea {
+    background: transparent;
+    border: none;
+}
+QScrollArea QWidget {
+    background: transparent;
 }
 
-QWidget#error-bg {
-    background-color: rgba(239, 71, 111, 0.15);
+QScrollBar:vertical {
+    background: transparent;
+    width: 8px;
+    margin: 8px 2px 8px 0;
+    border-radius: 4px;
 }
 
-/** Keyboard Focus **/
-/* QPushButton:focus, QLineEdit:focus {
-    outline: 2px solid #8BA8FF;
-    outline-offset: 2px;
-} */
+QScrollBar::handle:vertical {
+    background: #B0B3B8;
+    min-height: 24px;
+    border-radius: 4px;
+}
 
-/* Disabled state globally */
-*:disabled {
+QScrollBar::handle:vertical:hover {
+    background: #9A9EA4;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+    width: 0px;
+    border: none;
+    background: transparent;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: transparent;
+}
+
+QPushButton#TopicsAddButton {
+    background-color: #8BA8FF;
+    border-radius: 14px;
+    padding: 0;
+}
+
+QPushButton#TopicsAddButton:pressed {
+    background-color: #6F8EE3;
+}
+
+QPushButton#TopicsAddButton:disabled {
+    background-color: #D6D8DC;
     color: #9A9DA1;
 }
 
-/** Classes for margins **/
-QWidget[class~="margin-8"] { margin: 8px; }
+
+/* =========================================
+   MDI AREA (IDE-STYLE WINDOWS)
+   ========================================= */
+
+QMdiArea {
+    background-color: #FAFBFC;
+    border: none;
+}
+
+QMdiSubWindow {
+    background-color: #FFFFFF;
+    border: 1px solid #E1E4E8;
+    border-radius: 8px;
+}
+
+QMdiSubWindow::close-button,
+QMdiSubWindow::minimize-button,
+QMdiSubWindow::maximize-button {
+    width: 0px;
+    height: 0px;
+    border: none;
+}
+
+/* =========================================
+   TIMER WIDGET
+   ========================================= */
+
+TimerWidget {
+    min-width: 240px;
+    max-width: 240px;
+}
+
+QWidget#timerDisplay {
+    background: transparent;
+}
+
+QWidget[class~="margin-8"]  { margin: 8px; }
 QWidget[class~="margin-16"] { margin: 16px; }
 QWidget[class~="margin-24"] { margin: 24px; }
 QWidget[class~="margin-32"] { margin: 32px; }
 
-QWidget[class~="padding-8"] { padding: 8px; }
+QWidget[class~="padding-8"]  { padding: 8px; }
 QWidget[class~="padding-16"] { padding: 16px; }
 QWidget[class~="padding-24"] { padding: 24px; }
 QWidget[class~="padding-32"] { padding: 32px; }

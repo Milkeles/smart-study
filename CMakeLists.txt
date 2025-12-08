@@ -13,7 +13,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/bin)
 option(BUILD_TESTING "Build tests" ON)
 
 # Find Qt6
-find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Svg SvgWidgets)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
@@ -49,6 +49,8 @@ target_include_directories(smart-study PRIVATE
 target_link_libraries(smart-study PRIVATE
     Qt6::Core
     Qt6::Widgets
+    Qt6::Svg
+    Qt6::SvgWidgets 
     SQLiteCpp
 )
 

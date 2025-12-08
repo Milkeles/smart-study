@@ -17,7 +17,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install -y cmake ninja-build qt6-base-dev libsqlite3-dev libxkbcommon-dev
+          sudo apt install -y cmake ninja-build qt6-base-dev qt6-svg-dev qt6-tools-dev libsqlite3-dev libxkbcommon-dev 
 
       - name: Install SQLiteCpp
         run: |
