@@ -1,36 +1,21 @@
 #ifndef TIMER_WIDGET_H
 #define TIMER_WIDGET_H
 
-#include <QPushButton>
-#include <QVBoxLayout>
 #include <QWidget>
+#include <QPushButton>
 
 class TimerWidget : public QWidget {
-  Q_OBJECT
-
+    Q_OBJECT
 public:
-  explicit TimerWidget(QWidget *parent = nullptr);
-
-  void setRunning(bool running);
-  bool isRunning() const { return m_running; }
+    explicit TimerWidget(QWidget *parent = nullptr);
 
 signals:
-  void playClicked();
-  void settingsClicked();
-
-protected:
-  void paintEvent(QPaintEvent *event) override;
+    void playClicked();
+    void settingsClicked();
 
 private:
-  void setupUI();
-  void drawCircularProgress(QPainter &painter);
-  void drawPlayPauseState(QPainter &painter);
-
-  bool m_running;
-  float m_progress;
-
-  QPushButton *playButton;
-  QPushButton *settingsButton;
+    QPushButton *playButton;
+    QPushButton *settingsButton;
 };
 
 #endif // TIMER_WIDGET_H

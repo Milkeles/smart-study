@@ -125,6 +125,11 @@ QWidget#success-bg { background-color: rgba(6, 214, 160, 0.15); }
 QWidget#warning-bg { background-color: rgba(255, 209, 102, 0.2); }
 QWidget#error-bg   { background-color: rgba(239, 71, 111, 0.15); }
 
+QWidget#timerCard {
+    background-color: #F1F3F5; /* same as background2 */
+    border-radius: 18px;
+}
+
 /* ===== TOPICS PANEL CARD ===== */
 
 QFrame#topicsCard {

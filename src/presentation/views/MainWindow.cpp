@@ -40,14 +40,13 @@ void MainWindow::setupUI() {
 
   sidebar = new Sidebar(centralWidget);
   sidebar->setFixedWidth(280);
-  sidebar->setObjectName("background2");
   mainLayout->addWidget(sidebar);
 
   mdiArea = new QMdiArea(centralWidget);
   mdiArea->setObjectName("background1");
   mdiArea->setViewMode(QMdiArea::SubWindowView);
   mdiArea->setTabsClosable(false);
-  mdiArea->setTabsMovable(false);
+  mdiArea->setTabsMovable(true);
   mdiArea->setFrameShape(QFrame::NoFrame);
 
   mdiArea->setBackground(QBrush(QColor("#FAFBFC")));
@@ -55,14 +54,17 @@ void MainWindow::setupUI() {
 
   QWidget *rightPanelContainer = new QWidget(centralWidget);
   rightPanelContainer->setObjectName("background1");
-  rightPanelContainer->setFixedWidth(240);
+  rightPanelContainer->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
 
   QVBoxLayout *rightLayout = new QVBoxLayout(rightPanelContainer);
-  rightLayout->setContentsMargins(0, 0, 0, 0);
-  rightLayout->setSpacing(0);
+  rightLayout->setContentsMargins(16, 16, 16, 16);
+  rightLayout->setSpacing(8);
 
   timerWidget = new TimerWidget(rightPanelContainer);
-  timerWidget->setObjectName("background2");
+  timerWidget->setMinimumHeight(100);
+  timerWidget->setMaximumHeight(100);
+  timerWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+
   rightLayout->addWidget(timerWidget);
   rightLayout->addStretch();
 
@@ -121,14 +123,6 @@ void MainWindow::onNoteSelected(const QString &topic, const QString &note) {
 
 // TODO: Make this thing's style better.
 void MainWindow::onTimerToggle() {
-  bool isRunning = !timerWidget->isRunning();
-  timerWidget->setRunning(isRunning);
-
-  if (isRunning) {
-    qDebug() << "Timer started";
-  } else {
-    qDebug() << "Timer paused";
-  }
 }
 
 void MainWindow::onFlashCardsClicked() {
