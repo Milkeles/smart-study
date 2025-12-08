@@ -16,6 +16,7 @@ int main(int argc, char *argv[]) {
   } else {
     qDebug() << "Failed to load QSS!";
   }
+  
 
   GuiUtils::installGlobalEffect<QPushButton>(
       [](QWidget *w) { GuiUtils::addShadowEffect(w); },

@@ -40,9 +40,16 @@ public:
     void loadTopics();
     void saveMarkdown();
     void loadMarkdown();
-    void createNewFile(); 
+    void createNewFile();
+    void switchToEditMode();
+    void switchToPreviewMode();
+
 
 private:
+
+ QString renderMarkdown(const QString &md);
+QTextBrowser *markdownPreview;
+
  QWidget *centralWidget;
 
  QTreeWidget *topicsTree;
@@ -56,6 +63,11 @@ QPushButton *newFileButton;
 QTextEdit *markdownEditor;
 
 QString currentFilePath;
+
+QPushButton *previewModeButton;
+QPushButton *editModeButton;
+
+bool isPreviewMode = false;
 };
 
 #endif

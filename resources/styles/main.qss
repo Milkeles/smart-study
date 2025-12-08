@@ -170,3 +170,52 @@ QPushButton#NewFileButton {
 QPushButton#NewFileButton:hover {
     background-color: #45a049;
 }
+
+
+/* Markdown Editor */
+QTextEdit#mdEditor {
+    background-color: #FAFBFC;  /* фон */
+    color:#212529;            /* текст */
+    font-family: "Inter";
+    font-size: 16px;
+    border: 1px solid #D6D8DC;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+
+QTextEdit#mdEditor:focus {
+    border: 2px solid #8BA8FF;
+    background-color: #FFFFFF;
+}
+
+/* Markdown Preview */
+QTextBrowser#mdPreview {
+    background-color: #FFFFFF;
+    color: #212529;
+    border: 2px solid #D0D4DA;
+    border-radius: 14px;
+    padding: 16px;
+    font-size: 16px;
+    font-family: "Inter";
+}
+
+/* Scrollbars for editor + preview */
+QTextEdit#mdEditor QScrollBar:vertical,
+QTextBrowser#mdPreview QScrollBar:vertical {
+    border: none;
+    background: #F1F3F5;
+    width: 10px;
+    border-radius: 5px;
+}
+
+QTextEdit#mdEditor QScrollBar::handle:vertical,
+QTextBrowser#mdPreview QScrollBar::handle:vertical {
+    background: #C0B7FF;
+    border-radius: 5px;
+}
+
+QTextEdit#mdEditor QScrollBar::handle:vertical:hover,
+QTextBrowser#mdPreview QScrollBar::handle:vertical:hover {
+    background: #B0A7EF;
+}
