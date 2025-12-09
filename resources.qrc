@@ -1,5 +1,8 @@
+<!DOCTYPE RCC>
 <RCC>
-    <qresource prefix="/">
-        <file>resources/styles/main.qss</file>
-    </qresource>
+  <qresource prefix="/">
+    <file>resources/styles/main.qss</file>
+    <file>resources/icons/settings.svg</file>
+    <file>resources/icons/play.svg</file>
+  </qresource>
 </RCC>

@@ -3,59 +3,49 @@
  * @brief Main window view of the Smart Study application
  *
  * This class provides the primary UI container for the application,
- * managing navigation between different views (FlashCards, Pomodoro, etc.)
+ * managing navigation between different views and window management.
  *
  * @author Hristo T. Hristov (milkeles)
  * @date Created: 30/10/2025
- * @date Updated: 30/10/2025
+ * @date Updated: 02/11/2025
  */
 
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QLabel>
+#include <QHBoxLayout>
 #include <QMainWindow>
-#include <QPushButton>
-#include <QVBoxLayout>
-#include <QWidget>
-#include <QListWidget>
-#include <QDir>
-#include <QDialog>
-#include <QTextEdit>
-#include <QTextBrowser>
-#include <QFile>
-#include <QTextStream>
-#include <QTreeWidget>
-#include <QTreeWidgetItem>
+#include <QMdiArea>
 
-
+#include "presentation/widgets/Sidebar.h"
+#include "presentation/widgets/TimerWidget.h"
 
 class MainWindow : public QMainWindow {
   Q_OBJECT
-public:
-  MainWindow(QWidget *parent = nullptr);
 
-  private slots:
-    void onTopicSelected(QTreeWidgetItem* item);
-    void loadTopics();
-    void saveMarkdown();
-    void loadMarkdown();
-    void createNewFile(); 
+public:
+  explicit MainWindow(QWidget *parent = nullptr);
+
+private slots:
+  void onNoteSelected(const QString &topic, const QString &note);
+  void onTimerToggle();
+  void onFlashCardsClicked();
 
 private:
- QWidget *centralWidget;
+  void setupUI();
+  void createMockTextWindow(const QString &topic, const QString &note);
 
- QTreeWidget *topicsTree;
+  QWidget *centralWidget;
+  QHBoxLayout *mainLayout;
 
-QPushButton *flashcardsButton;
-QPushButton *importButton;
-QPushButton *settingsButton;
-QPushButton *saveButton;
-QPushButton *newFileButton; 
+  // Left sidebar
+  Sidebar *sidebar;
 
-QTextEdit *markdownEditor;
+  // Center - IDE-style MDI area
+  QMdiArea *mdiArea;
 
-QString currentFilePath;
+  // Right panel - Timer
+  TimerWidget *timerWidget;
 };
 
-#endif
+#endif // MAINWINDOW_H
