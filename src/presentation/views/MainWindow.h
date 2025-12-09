@@ -19,6 +19,7 @@
 
 #include "presentation/widgets/Sidebar.h"
 #include "presentation/widgets/TimerWidget.h"
+#include "presentation/widgets/FlashCardManager.h"
 
 class MainWindow : public QMainWindow {
   Q_OBJECT
@@ -34,6 +35,7 @@ private slots:
 private:
   void setupUI();
   void createMockTextWindow(const QString &topic, const QString &note);
+  void startFlashcardsSession();
 
   QWidget *centralWidget;
   QHBoxLayout *mainLayout;
@@ -46,6 +48,12 @@ private:
 
   // Right panel - Timer
   TimerWidget *timerWidget;
+
+  // Flashcards window
+  void createFlashCardWindow();
+  FlashCardManager *flashManager; 
+
+
 };
 
 #endif // MAINWINDOW_H

@@ -229,6 +229,54 @@ QPushButton#TopicsAddButton:disabled {
     color: #9A9DA1;
 }
 
+/* =========================================
+   FLASHCARD SET DROPDOWN
+   ========================================= */
+
+QComboBox#setSelector {
+    background-color: #FAFBFC;   /* същия фон като QWidget#background1 */
+    border: 1px solid #B0B3B8;  /* светъл сив кант */
+    border-radius: 8px;
+    padding: 4px 8px;
+    min-height: 36px;
+    font-size: 15px;
+    color: #212529;
+}
+
+QComboBox#setSelector::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 24px;
+    border-left: none;
+}
+
+QComboBox#setSelector QAbstractItemView {
+    background-color: #FAFBFC;
+    selection-background-color: #C0B7FF; /* като PrimaryButton */
+    border-radius: 8px;
+    padding: 4px;
+    color: #212529;
+}
+
+QPushButton#StartButton {
+    background-color: #8BA8FF;
+    color: #212529;
+    border: none;
+    border-radius: 14px;
+    padding: 12px 24px;
+    font-weight: 500;
+}
+
+QPushButton#StartButton:pressed {
+    background-color: #6F8EE3;
+}
+
+QPushButton#StartButton:disabled {
+    background-color: #D6D8DC;
+    color: #9A9DA1;
+}
+
+
 
 /* =========================================
    MDI AREA (IDE-STYLE WINDOWS)
@@ -275,3 +323,5 @@ QWidget[class~="padding-8"]  { padding: 8px; }
 QWidget[class~="padding-16"] { padding: 16px; }
 QWidget[class~="padding-24"] { padding: 24px; }
 QWidget[class~="padding-32"] { padding: 32px; }
+
+
