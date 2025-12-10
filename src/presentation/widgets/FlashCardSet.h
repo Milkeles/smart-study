@@ -1,9 +1,9 @@
 #pragma once
+#include "FlashCard.h"
 #include <QString>
 #include <QVector>
-#include "FlashCard.h"
 
 struct FlashCardSet {
-    QString title;
-    QVector<FlashCard> cards;
+  QString title;
+  QVector<FlashCard> cards;
 };

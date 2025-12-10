@@ -1,9 +1,9 @@
 #include "presentation/views/MainWindow.h"
 #include "utils/GuiUtils.h"
 #include <QApplication>
-#include <QPushButton> 
-#include <QString>  
 #include <QFile>
+#include <QPushButton>
+#include <QString>
 
 /*
  * List only button types that are not controlled by layouts!
@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
   QApplication app(argc, argv);
 
   // Load global stylesheet
-  QFile styleFile(":resources/styles/main.qss");
+  QFile styleFile(":/resources/styles/main.qss");
   if (styleFile.open(QFile::ReadOnly)) {
     const QString style = QLatin1String(styleFile.readAll());
     app.setStyleSheet(style);

@@ -6,11 +6,9 @@
  * @date Created: 30/10/2025 (dd/mm/yyyy)
  * @date Updated: 02/11/2025 (dd/mm/yyyy)
  */
-
 #include "presentation/views/MainWindow.h"
+#include "presentation/widgets/FlashCardEditorWidget.h"
 #include "presentation/widgets/FlashCardWidget.h"
-#include "presentation//widgets/FlashCardEditorWidget.h"
-
 
 #include <QApplication>
 #include <QBrush>
@@ -79,7 +77,6 @@ void MainWindow::setupUI() {
   showMaximized();
 
   flashManager = new FlashCardManager();
-
 }
 
 void MainWindow::createMockTextWindow(const QString &topic,
@@ -134,46 +131,43 @@ void MainWindow::onTimerToggle() {}
 void MainWindow::onFlashCardsClicked() {
   qDebug() << "Flashcards mode activated";
   mdiArea->closeAllSubWindows();
-  createFlashCardWindow();   
+  createFlashCardWindow();
 }
 
-void MainWindow::createFlashCardWindow()
-{
-   FlashCardEditorWidget *editor = new FlashCardEditorWidget(flashManager);
+void MainWindow::createFlashCardWindow() {
+  FlashCardEditorWidget *editor = new FlashCardEditorWidget(flashManager);
 
-    QMdiSubWindow *window = new QMdiSubWindow;
-    window->setWidget(editor);
-    window->setAttribute(Qt::WA_DeleteOnClose);
-    window->setWindowTitle("Flashcards Editor");
-    window->setWindowFlags(Qt::FramelessWindowHint | Qt::SubWindow);
+  QMdiSubWindow *window = new QMdiSubWindow;
+  window->setWidget(editor);
+  window->setAttribute(Qt::WA_DeleteOnClose);
+  window->setWindowTitle("Flashcards Editor");
+  window->setWindowFlags(Qt::FramelessWindowHint | Qt::SubWindow);
 
-    mdiArea->addSubWindow(window);
-    window->showMaximized();
-    window->show();
+  mdiArea->addSubWindow(window);
+  window->showMaximized();
+  window->show();
 
-     connect(editor, &FlashCardEditorWidget::startFlashcardsRequested, this, [this]() {
-    startFlashcardsSession();
-});
-
+  connect(editor, &FlashCardEditorWidget::startFlashcardsRequested, this,
+          [this]() { startFlashcardsSession(); });
 }
-
 
 void MainWindow::startFlashcardsSession() {
-    const auto sets = flashManager->getAllSets();
-    if (sets.isEmpty()) return;
+  const auto sets = flashManager->getAllSets();
+  if (sets.isEmpty())
+    return;
 
-    // Избираме първия сет (или може да добавиш UI за избор)
-    const auto &cards = sets[0].cards;
+  // Избираме първия сет (или може да добавиш UI за избор)
+  const auto &cards = sets[0].cards;
 
-    FlashCardWidget *cardWidget = new FlashCardWidget(cards);
+  FlashCardWidget *cardWidget = new FlashCardWidget(cards);
 
-    QMdiSubWindow *window = new QMdiSubWindow;
-    window->setWidget(cardWidget);
-    window->setAttribute(Qt::WA_DeleteOnClose);
-    window->setWindowTitle("Flashcard Session");
-    window->setWindowFlags(Qt::FramelessWindowHint | Qt::SubWindow);
+  QMdiSubWindow *window = new QMdiSubWindow;
+  window->setWidget(cardWidget);
+  window->setAttribute(Qt::WA_DeleteOnClose);
+  window->setWindowTitle("Flashcard Session");
+  window->setWindowFlags(Qt::FramelessWindowHint | Qt::SubWindow);
 
-    mdiArea->addSubWindow(window);
-    window->showMaximized();
-    window->show();
+  mdiArea->addSubWindow(window);
+  window->showMaximized();
+  window->show();
 }

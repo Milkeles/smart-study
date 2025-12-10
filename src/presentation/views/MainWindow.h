@@ -17,9 +17,9 @@
 #include <QMainWindow>
 #include <QMdiArea>
 
+#include "presentation/widgets/FlashCardManager.h"
 #include "presentation/widgets/Sidebar.h"
 #include "presentation/widgets/TimerWidget.h"
-#include "presentation/widgets/FlashCardManager.h"
 
 class MainWindow : public QMainWindow {
   Q_OBJECT
@@ -51,9 +51,7 @@ private:
 
   // Flashcards window
   void createFlashCardWindow();
-  FlashCardManager *flashManager; 
-
-
+  FlashCardManager *flashManager;
 };
 
 #endif // MAINWINDOW_H

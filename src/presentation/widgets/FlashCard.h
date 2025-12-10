@@ -2,6 +2,6 @@
 #include <QString>
 
 struct FlashCard {
-    QString question;
-    QString answer;
+  QString question;
+  QString answer;
 };
