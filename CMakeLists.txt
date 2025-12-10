@@ -13,13 +13,10 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/bin)
 option(BUILD_TESTING "Build tests" ON)
 
 # Find Qt6
-find_package(Qt6 REQUIRED COMPONENTS Core Widgets Svg SvgWidgets)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
-
-# Find SQLiteCpp (from vcpkg)
-find_package(SQLiteCpp CONFIG REQUIRED)
 
 # Compiler warnings
 if(MSVC)
@@ -42,25 +39,37 @@ add_executable(smart-study
     ${RESOURCES}
 )
 
+# Include directories
 target_include_directories(smart-study PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
+# Link Qt libraries
 target_link_libraries(smart-study PRIVATE
     Qt6::Core
     Qt6::Widgets
-    Qt6::Svg
-    Qt6::SvgWidgets 
-    SQLiteCpp
 )
 
-# Handle platform-specific SQLite target name
+# Find SQLiteCpp
+find_package(SQLiteCpp CONFIG REQUIRED)
+
+if (TARGET SQLiteCpp)
+    message(STATUS "Using SQLiteCpp target: SQLiteCpp")
+    target_link_libraries(smart-study PRIVATE SQLiteCpp)
+elseif (TARGET SQLiteCpp::SQLiteCpp)
+    message(STATUS "Using SQLiteCpp target: SQLiteCpp::SQLiteCpp")
+    target_link_libraries(smart-study PRIVATE SQLiteCpp::SQLiteCpp)
+else()
+    message(WARNING "No known SQLiteCpp target found — please check installation.")
+endif()
+
+# Optional: handle SQLite3 target if needed
 if (TARGET SQLite::SQLite3)
     target_link_libraries(smart-study PRIVATE SQLite::SQLite3)
 elseif (TARGET unofficial::sqlite3::sqlite3)
     target_link_libraries(smart-study PRIVATE unofficial::sqlite3::sqlite3)
 else()
-    message(WARNING "No known SQLite target found — please check package installation.")
+    message(STATUS "No separate SQLite3 target found — continuing")
 endif()
 
 # Tests (to be added later)

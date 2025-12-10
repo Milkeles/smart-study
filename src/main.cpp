@@ -1,8 +1,9 @@
 #include "presentation/views/MainWindow.h"
 #include "utils/GuiUtils.h"
 #include <QApplication>
-
 #include <QFile>
+#include <QPushButton>
+#include <QString>
 
 /*
  * List only button types that are not controlled by layouts!
@@ -22,6 +23,8 @@ int main(int argc, char *argv[]) {
   if (styleFile.open(QFile::ReadOnly)) {
     const QString style = QLatin1String(styleFile.readAll());
     app.setStyleSheet(style);
+  } else {
+    qDebug() << "Failed to load QSS!";
   }
 
   // Global shadow effect – only for selected buttons
